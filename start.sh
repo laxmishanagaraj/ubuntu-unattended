@@ -3,11 +3,18 @@ set -e
 
 # set defaults
 default_hostname="$(hostname)"
-default_domain="netson.local"
-default_puppetmaster="foreman.netson.nl"
+default_domain="laxmishanagaraj.local"
+default_puppetmaster="foreman.laxmishanagaraj.nl"
 tmp="/root/"
 
 clear
+
+# update repos
+apt-get -y update
+apt-get -y upgrade
+apt-get -y dist-upgrade
+apt-get -y autoremove
+apt-get -y purge
 
 # check for root privilege
 if [ "$(id -u)" != "0" ]; then
@@ -84,12 +91,7 @@ sed -i "s@ubuntu.ubuntu@$fqdn@g" /etc/hosts
 sed -i "s@ubuntu@$hostname@g" /etc/hosts
 hostname "$hostname"
 
-# update repos
-apt-get -y update
-apt-get -y upgrade
-apt-get -y dist-upgrade
-apt-get -y autoremove
-apt-get -y purge
+
 
 # install puppet
 if [[ include_puppet_repo -eq 1 ]]; then
@@ -120,7 +122,7 @@ pluginsync=true\n\
         if [[ ! -f $tmp/finish.sh ]]; then
             echo -n " downloading finish.sh: "
             cd $tmp
-            download "https://raw.githubusercontent.com/netson/ubuntu-unattended/master/finish.sh"
+            download "https://raw.githubusercontent.com/laxmishanagaraj/ubuntu-unattended/master/finish.sh"
         fi
 
         # set proper permissions on finish script

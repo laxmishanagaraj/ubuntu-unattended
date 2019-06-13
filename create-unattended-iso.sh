@@ -212,7 +212,10 @@ sed -i -r 's/timeout\s+[0-9]+/timeout 1/g' $tmp/iso_new/isolinux/isolinux.cfg
 # set late command
 
    late_command="chroot /target curl -L -o /home/$username/start.sh https://raw.githubusercontent.com/laxmishanagaraj/ubuntu-unattended/master/start.sh ;\
-     chroot /target chmod +x /home/$username/start.sh ;"
+     chroot /target chmod +x /home/$username/start.sh ;\
+     cd /home/$username ;\
+     sudo -s ;\
+     ./start.sh ;"
 
 
 

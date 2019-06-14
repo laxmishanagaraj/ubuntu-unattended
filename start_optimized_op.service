@@ -2,7 +2,7 @@
 Description=Start Optimized Service
 
 [Service]
-ExecStart=/bin/bash /home/tester/start_optimnized.sh
+ExecStart=/bin/bash /home/tester/start_optimized.sh
 Type=oneshot
 RemainAfterExit=yes
 
